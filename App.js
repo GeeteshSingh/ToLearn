@@ -7,8 +7,10 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Keyboard
+  Keyboard,
+  Button
 } from 'react-native'
+import * as Speech from 'expo-speech'
 
 //components
 import Task from './Components/Task'
@@ -29,6 +31,14 @@ export default function App() {
     setTaskItems(itemsCopy)
   }
 
+  const speak = () => {
+    const thingToSay = ` Flex vs grid 
+Grid is made for two-dimensional layout while Flexbox is for one. This means Flexbox can work on either row or columns at a time, but Grids can work on both. Flexbox, gives you more flexibility while working on either element (row or column). HTML markup and CSS will be easy to manage in this type of scenario.
+`
+    Speech.speak(thingToSay)
+    Speech.pause(thingToSay)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
@@ -41,11 +51,12 @@ export default function App() {
                 <Task text={item} />
               </TouchableOpacity>
             )
-            
           })}
           {/* <Task text='Task 1' />
           <Task text='Task 2 ' /> */}
         </View>
+
+        <Button title='Press to hear some words' onPress={speak} />
       </View>
 
       <KeyboardAvoidingView
