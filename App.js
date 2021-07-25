@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Keyboard,
-  Button
+  Button,
+  ScrollView
 } from 'react-native'
 import * as Speech from 'expo-speech'
 
@@ -41,33 +42,42 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
 
   return (
     <View style={styles.container}>
-      <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}> To Learn</Text>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1
+        }}
+        keyboardShouldPersistTaps='handled'
+      >
+        <View style={styles.tasksWrapper}>
+          <Text style={styles.sectionTitle}> To Learn</Text>
 
-        <View style={styles.items}>
-          {taskItems.map((item, index) => {
-            return (
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <Task text={item} />
-              </TouchableOpacity>
-            )
-          })}
-          {/* <Task text='Task 1' />
+          <View style={styles.items}>
+            {taskItems.map((item, index) => {
+              return (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => completeTask(index)}
+                >
+                  <Task text={item} />
+                </TouchableOpacity>
+              )
+            })}
+            {/* <Task text='Task 1' />
           <Task text='Task 2 ' /> */}
+          </View>
+
+          <Button title='Press to hear some words' onPress={speak} />
         </View>
-
-        <Button title='Press to hear some words' onPress={speak} />
-      </View>
-
+      </ScrollView>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === 'android' ? 'padding' : 'height'}
         style={styles.writeTaskWrapper}
       >
         <TextInput
           style={styles.input}
+          placeholder={'Write a task'}
           value={task}
           onChangeText={text => setTask(text)}
-          placeholder={'Type what you want to learn'}
         />
         <TouchableOpacity onPress={() => handleAddTask()}>
           <View style={styles.addWrapper}>
@@ -82,7 +92,7 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBEAED'
+    backgroundColor: '#E8EAED'
   },
   tasksWrapper: {
     paddingTop: 80,
@@ -106,16 +116,16 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     borderRadius: 60,
     borderColor: '#C0C0C0',
     borderWidth: 1,
-    width: 290
+    width: 250
   },
   addWrapper: {
     width: 60,
     height: 60,
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF',
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',

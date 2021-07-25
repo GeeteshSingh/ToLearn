@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 const Task = (props) => {
   return (
@@ -9,7 +10,15 @@ const Task = (props) => {
         <View style={styles.square}></View>
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
-      <View style={styles.circular}></View>
+      <View style={styles.circular}>
+        <Icon
+          raised
+          name='microphone'
+          type='font-awesome'
+          color='#f50'
+          onPress={() => console.log('hello')}
+        />
+      </View>
     </View>
   )
 }
@@ -41,8 +50,8 @@ const styles = StyleSheet.create({
     maxWidth: '80%'
   },
   circular: {
-    width: 12,
-    height: 12,
+    width: 20,
+    height: 20,
     borderColor: '#55BCF6',
     borderWidth:2,
     borderRadius: 5
