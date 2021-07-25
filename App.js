@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react'
 import {
   KeyboardAvoidingView,
@@ -85,6 +86,7 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
+      <StatusBar style='dark' backgroundColor='#fff4' />
     </View>
   )
 }

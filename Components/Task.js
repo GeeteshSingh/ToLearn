@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import React from 'react'
+import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-const Task = (props) => {
+const Task = props => {
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
@@ -15,10 +15,11 @@ const Task = (props) => {
           raised
           name='microphone'
           type='font-awesome'
-          color='#f50'
+          iconStyle={styles.iconStyle}
           onPress={() => console.log('hello')}
         />
       </View>
+      <StatusBar style='dark' backgroundColor='#fff4' />
     </View>
   )
 }
@@ -50,12 +51,15 @@ const styles = StyleSheet.create({
     maxWidth: '80%'
   },
   circular: {
-    width: 20,
-    height: 20,
+    width: 12,
+    height: 12,
     borderColor: '#55BCF6',
-    borderWidth:2,
+    borderWidth: 2,
     borderRadius: 5
+  },
+  iconStyle: {
+    color: '#f50'
   }
 })
 
-export default Task;
+export default Task
