@@ -35,10 +35,19 @@ export default function App() {
 
   const speak = () => {
     const thingToSay = ` Flex vs grid 
-Grid is made for two-dimensional layout while Flexbox is for one. This means Flexbox can work on either row or columns at a time, but Grids can work on both. Flexbox, gives you more flexibility while working on either element (row or column). HTML markup and CSS will be easy to manage in this type of scenario.
+Grid is made for two-dimensional 
+layout while Flexbox is for one. 
+This means Flexbox can work on either row or columns at a time,
+ but Grids can work on both. Flexbox,
+  gives you more flexibility while working on either element (row or column).
+   HTML markup and CSS will be easy to manage in this type of scenario.
 `
     Speech.speak(thingToSay)
-    Speech.pause(thingToSay)
+
+    setTimeout(() => {
+      Speech.stop(thingToSay)
+    }, 100)
+    // Speech.stop(thingToSay)
   }
 
   return (
@@ -71,7 +80,7 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
         </View>
       </ScrollView>
       <KeyboardAvoidingView
-        behavior={Platform.OS === 'android' ? 'padding' : 'height'}
+        behavior={(Platform.OS === 'android') | 'ios' ? 'padding' : 'height'}
         style={styles.writeTaskWrapper}
       >
         <TextInput
@@ -86,7 +95,7 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
-      <StatusBar style='dark' backgroundColor='#fff4' />
+      <StatusBar style='dark' backgroundColor='#fc4c5d' />
     </View>
   )
 }
@@ -94,7 +103,7 @@ Grid is made for two-dimensional layout while Flexbox is for one. This means Fle
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8EAED'
+    backgroundColor: '#fc4c5d'
   },
   tasksWrapper: {
     paddingTop: 80,
@@ -109,7 +118,7 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 30,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -120,7 +129,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: '#FFF',
     borderRadius: 60,
-    borderColor: '#C0C0C0',
+    borderColor: '#000',
     borderWidth: 1,
     width: 250
   },
@@ -131,7 +140,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#C0C0C0',
+    borderColor: '#000',
     borderWidth: 1
   },
   addText: {}
